@@ -1,10 +1,11 @@
-exports.description = 'Create a spumko repo';
+exports.description = 'Create a nodejs project';
 
 exports.template = function(grunt, init, done) {
 
     init.process({}, [
-        init.prompt('name', 'spumko-repo'),
-        init.prompt('description', 'description')
+        init.prompt('username'),
+        init.prompt('name'),
+        init.prompt('description')
     ], function(err, props) {
 
         var files = init.filesToCopy(props);
@@ -14,18 +15,29 @@ exports.template = function(grunt, init, done) {
             name: props.name,
             decription: props.description,
             version: '0.0.1',
-            repository: 'git://github.com/spumko/' + props.name,
-            keywords: ['spumko'],
-            main: 'index',
+            repository: 'git://github.com/' + props.username + ' /' + props.name,
+            main: 'lib/index',
             node_version: '0.10.x',
+            scripts: {
+                start: './bin/server',
+                test: 'NODE_ENV=test mocha test/index.js test/**/*.js',
+                lint: 'jshint lib'
+            },
             peerDependencies: {
             },
             dependencies: {
+                'hapi': '*',
+                'boom': '*',
+                'foreman': '*'
             },
             devDependencies: {
-                'lab': '0.1.x'
+                'mocha': '*',
+                'expect.js': '*',
+                'blanket': '*',
+                'jshint': '*',
+                'sinon': '*',
+                'flatten-json': '*'
             },
-            npm_test: 'make test-cov',
             licenses: [{
                 'type': 'BSD',
                 'url': 'http://github.com/spumko/' + props.name + '/raw/master/LICENSE'

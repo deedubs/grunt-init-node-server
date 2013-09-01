@@ -1,28 +1,7 @@
-// Load modules
+var fs = require('js');
+var flattenJSON = require('flatten-json');
 
-var Lab = require('lab');
+flattenJSON(JSON.parse(fs.readFileSync(__dirname + '/.env')), '', process.env);
 
+global.expect = require('expect.js');
 
-// Declare internals
-
-var internals = {};
-
-
-// Test shortcuts
-
-var expect = Lab.expect;
-var before = Lab.before;
-var after = Lab.after;
-var describe = Lab.experiment;
-var it = Lab.test;
-
-
-describe('{%= name %}', function () {
-
-    it('can be required', function (done) {
-
-        var {%= name %} = require('..');
-        expect({%= name %}).to.exist;
-        done();
-    });
-});
