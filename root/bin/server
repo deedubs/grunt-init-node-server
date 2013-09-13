@@ -4,4 +4,4 @@ var server = require('../');
 
 server.start(function () {
     console.log("Server listening @ %s", server.info.uri);
-});         
+});
