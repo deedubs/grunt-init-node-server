@@ -15,7 +15,8 @@ exports.template = function(grunt, init, done) {
             name: props.name,
             decription: props.description,
             version: '0.0.1',
-            repository: 'git://github.com/' + props.username + ' /' + props.name,
+            homepage: 'http://github.com/' + props.username + '/' + props.name,
+            repository: 'git://github.com/' + props.username + '/' + props.name,
             main: 'lib/index',
             node_version: '0.10.x',
             scripts: {
